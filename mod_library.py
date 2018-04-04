@@ -25,18 +25,18 @@ def jacobian_matrix_at_gridpoint_ass(xi_one, xi_two):
 
 def covariant_basis_vectors_at_gridpoint(jacobian_matrix):
     """
-    Purpose:
-    Input:
-    Output:
+    Purpose: Generates the two covariant basis vectors at point
+    Input: jacobian_matrix at point: numpy array (2x2)
+    Output: 2 numpy arrays (2)
     """
     return jacobian_matrix.T[0], jacobian_matrix.T[1]
 
 
 def jacobian_at_gridpoint(jacobian_matrix):
     """
-    Purpose:
-    Input:
-    Output:
+    Purpose: To generate jacobian sqrt(g) at point
+    Input: jacobian matrix at point: numpy array (2x2)
+    Output: real number
     """
     determinant = np.linalg.det(jacobian_matrix)
     return np.sqrt(determinant)
@@ -44,9 +44,9 @@ def jacobian_at_gridpoint(jacobian_matrix):
 
 def contravariant_basis_vectors_at_gridpoint(a_cov_one, a_cov_two, jacobian):
     """
-    Purpose:
-    Input:
-    Output:
+    Purpose: Generate contravariant basis vectors at point
+    Input: covariant basis vectors: 2x nummpy arrays (len 2), jacobian: real
+    Output: Contravariant basis vectors at point: 2x numpy arrays (2x2)
     """
     a_cov_one_3d = np.append(a_cov_one, 0)
     a_cov_two_3d = np.append(a_cov_two, 0)
@@ -56,9 +56,9 @@ def contravariant_basis_vectors_at_gridpoint(a_cov_one, a_cov_two, jacobian):
 
 def metric_tensor_contra_at_gridpoint(a_contra_one, a_contra_two):
     """
-    Purpose:
-    Input:
-    Output:
+    Purpose: To generate contravariant metric tensor
+    Input: Contravariant basis vector: 2x numpy arrays (len 2)
+    Output: contravariant metric tensor: numpy array (2x2)
     """
     return np.array([[np.inner(a_contra_one, a_contra_one), np.inner(a_contra_one, a_contra_two)],
                      [np.inner(a_contra_two, a_contra_one), np.inner(a_contra_two, a_contra_two)]])

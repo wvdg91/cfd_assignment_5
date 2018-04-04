@@ -1,9 +1,12 @@
 import numpy as np
 from mod_library import *
 
-## Generate Mesh ##
-I = 6
-J = 6
+# Options
+np.set_printoptions(linewidth=200)
+
+# Generate Mesh
+I = 4
+J = 4
 h1 = eval_h(I)
 h2 = eval_h(J)
 
