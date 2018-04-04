@@ -87,11 +87,11 @@ for elem in elem_list:
 ############################### Solve Linear System ###################################
 
 phi = np.linalg.solve(matrix, source_vector)
+phi_reshaped = phi.reshape(J, I)
 
 ############################### Contour Plot ##########################################
 
 if (plot_contour):
-    phi_reshaped = phi.reshape(J, I)
     plt.figure()
     CS = plt.contourf(XX, YY, phi_reshaped, 10)
     CS = plt.contour(CS,
