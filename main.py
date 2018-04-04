@@ -83,4 +83,3 @@ for elem in elem_list:
 ############################### Solve Linear System ###################################
 
 phi = np.linalg.solve(matrix, source_vector)
-print(phi)
