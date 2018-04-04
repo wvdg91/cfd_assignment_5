@@ -13,6 +13,16 @@ def jacobian_matrix_at_gridpoint(xi_one, xi_two):
                      [np.sin(xi_two), xi_one * np.cos(xi_two)]])
 
 
+def jacobian_matrix_at_gridpoint_ass(xi_one, xi_two):
+    """
+    Purpose: Generate 2D Jacobian Matrix for GENERAL -> CARTESIAN coordinate transformation of assignment.
+    Input: Two general coordinates of gridpoint (xi_1, xi_2)
+    Output: 2x2 numpy array
+    """
+    return np.array([[-0.5 * np.pi * np.sin(0.5 * np.pi * xi_one) * (1 + 4 * xi_two), 4 * np.cos(0.5 * np.pi * xi_one)],
+                     [0.5 * np.pi * np.cos(0.5 * np.pi * xi_one) * (1 + 4 * xi_two), 4 * np.sin(0.5 * np.pi * xi_one)]])
+
+
 def covariant_basis_vectors_at_gridpoint(jacobian_matrix):
     """
     Purpose:
