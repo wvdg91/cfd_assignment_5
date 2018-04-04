@@ -1,9 +1,12 @@
 import numpy as np
 from mod_library import *
 from stencil_lib import *
+import matplotlib.pyplot as plt
+import matplotlib.cm as cm
 
 # Options
 np.set_printoptions(linewidth=200)
+plot_contour = False
 
 ################################# Generate Mesh #######################################
 I = 4
@@ -11,7 +14,8 @@ J = 4
 h1 = mods.eval_h(I)
 h2 = mods.eval_h(J)
 
-elem_list = construct_elem_list(I, J)
+XX, YY = construct_meshgrid(I, J)
+elem_list = construct_elem_list(XX, YY)
 matrix = construct_matrix(elem_list)
 source_vector = construct_source_vector(elem_list)
 
@@ -83,3 +87,18 @@ for elem in elem_list:
 ############################### Solve Linear System ###################################
 
 phi = np.linalg.solve(matrix, source_vector)
+
+############################### Contour Plot ##########################################
+
+if (plot_contour):
+    phi_reshaped = phi.reshape(J, I)
+    plt.figure()
+    CS = plt.contourf(XX, YY, phi_reshaped, 10)
+    CS = plt.contour(CS,
+                     colors='r'
+                     )
+    plt.clabel(CS, inline=1, fontsize=10)
+    plt.title('Contourplot ' r'$\phi$')
+    plt.show()
+else:
+    pass
