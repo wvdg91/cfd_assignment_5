@@ -75,7 +75,7 @@ def eval_h(K):
     return 1. / (K - 1)
 
 
-def construct_elem_list(I, J):
+def construct_elem_list(xx, yy):
     """
     Purpose: To construct a list of the gcors of all the elems
     Input:  I -> range in x direction
@@ -83,14 +83,25 @@ def construct_elem_list(I, J):
     Output: list with len = # elems,
             and corresponding gcors
     """
+    I, J = xx.shape[0], xx.shape[1]
     elem_list = []
-    x = np.linspace(0, 1, I, True)
-    y = np.linspace(0, 1, J, True)
-    xx, yy = np.meshgrid(x, y)
     for i in range(I):
         for j in range(J):
             elem_list.append([xx[i, j], yy[i, j]])
     return elem_list
+
+
+def construct_meshgrid(I, J):
+    """
+    Purpose: To construct a mesh
+    Input:  I -> range in x direction
+            J -> range in j direction
+    Output: 2x numpy arrays (J x I) with XX and YY values
+    """
+    x = np.linspace(0, 1, I, True)
+    y = np.linspace(0, 1, J, True)
+    xx, yy = np.meshgrid(x, y)
+    return xx, yy
 
 
 def eval_elem_type(elem):
