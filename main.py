@@ -5,7 +5,7 @@ from stencil_lib import *
 # Options
 np.set_printoptions(linewidth=200)
 
-# Generate Mesh
+################################# Generate Mesh #######################################
 I = 4
 J = 4
 h1 = mods.eval_h(I)
@@ -79,3 +79,8 @@ for elem in elem_list:
         source_vector[elem_no] = tb_source()
     else:
         print('Error')
+
+############################### Solve Linear System ###################################
+
+phi = np.linalg.solve(matrix, source_vector)
+print(phi)
